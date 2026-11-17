@@ -27,6 +27,8 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 .crown-button:hover{animation:none;filter:drop-shadow(0 0 14px #f4d49f)}
 @media(prefers-reduced-motion:reduce){.crown-button{filter:drop-shadow(0 0 8px #e8d1a488)}.crown-button::before{opacity:.6}}
 .magic-paused .crown-button::before{animation-play-state:paused}
+
+.soundtrack{display:flex;align-items:center;justify-content:center;gap:13px;flex-wrap:wrap;margin:20px 0 4px}.music-toggle{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:11px 18px;border:1px solid #e9b8cb66;border-radius:30px;background:#282136;color:var(--ink);font-size:11px}.music-toggle:hover{background:#453148}.music-toggle[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 17px #e8d1a41a}.song-status{font-size:10px;color:var(--muted);margin:0}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -184,6 +186,8 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <div class="rain-badge" aria-hidden="true">A little Dataland weather. A very good memory. ♡</div>
 </div>
 <p class="tap-cue">Five little discoveries. <b id="discovery-count">0 of 5 found</b> · No wrong order.</p>
+<div class="soundtrack" aria-label="Our little soundtrack"><button type="button" class="music-toggle" id="music-toggle" aria-pressed="false" aria-controls="our-song"><span id="music-icon" aria-hidden="true">▶</span><span id="music-label">Play our song</span></button><p class="song-status" id="song-status" role="status" aria-live="polite">Iris · Goo Goo Dolls</p></div>
+<audio id="our-song" preload="none" src="./Iris%20-%20Goo%20Goo%20Dolls%20short.mp3"></audio>
 </section>
 <section class="royal-invitation" aria-label="Your Princess Day letter"><p>Not all princesses need a castle.</p><small>Some just need their favorite seat and a little royal treatment.</small><button class="primary" id="letter-button">A little royal treatment for you &nbsp; ♡</button></section>
 </main>
@@ -231,5 +235,14 @@ $('rain-button').onclick=()=>{raining=!raining;$('scene').classList.toggle('rain
 function syncMotion(){document.body.classList.toggle('magic-paused',paused);document.querySelectorAll('.sky i,.moon-halo,.scenestars circle,.crown-button').forEach(el=>el.style.animationPlayState=paused?'paused':'running');$('motion-button').setAttribute('aria-pressed',String(paused));$('motion-button').textContent=paused?'Resume the magic':'Pause the magic';if(paused){cancelAnimationFrame(frame);frame=0;ctx?.clearRect(0,0,rainWidth,rainHeight);document.querySelectorAll('.spark,.royal-particle').forEach(el=>el.remove());}else startRain();}
 $('motion-button').onclick=()=>{paused=!paused;syncMotion();};reduceMotion.addEventListener('change',e=>{paused=e.matches;syncMotion();});document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else startRain();});window.addEventListener('resize',()=>{resizeRain();});
 for(let i=0;i<42;i++){const star=document.createElement('i');star.style.left=Math.random()*100+'%';star.style.top=Math.random()*100+'%';star.style.animationDelay=-Math.random()*5+'s';document.querySelector('.sky').append(star);}syncMotion();
+const song=$('our-song'),musicButton=$('music-toggle'),songStatus=$('song-status');
+function syncSong(){const playing=!song.paused&&!song.ended;musicButton.setAttribute('aria-pressed',String(playing));$('music-icon').textContent=playing?'Ⅱ':'▶';$('music-label').textContent=playing?'Pause our song':'Play our song';}
+musicButton.addEventListener('click',()=>{if(!song.paused){song.pause();return;}if(song.error)song.load();const attempt=song.play();if(attempt)attempt.catch(error=>{syncSong();if(error.name!=='AbortError')songStatus.textContent='Couldn’t start the song. Tap to try again.';});});
+song.addEventListener('play',()=>{syncSong();songStatus.textContent='Loading our song…';});
+song.addEventListener('playing',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
+song.addEventListener('pause',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
+song.addEventListener('ended',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
+song.addEventListener('error',()=>{syncSong();songStatus.textContent='Couldn’t load the song. Tap to try again.';});
+
 </script>
 </body></html>
