@@ -33,7 +33,7 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <section class="adventure" aria-label="Your interactive passenger-princess scene">
 <div class="scene-heading"><span>01 / YOUR SEAT IS RESERVED</span><span>Tap the little labels. There are surprises inside. ↙</span></div>
 <div class="scene" id="scene">
-<svg viewBox="0 0 1000 620" preserveAspectRatio="none" role="img" aria-label="A parked car beneath a lavender night sky, with paper flowers on the passenger seat">
+<svg viewBox="0 0 1000 620" preserveAspectRatio="none" role="img" aria-label="A parked car overlooking a moonlit Manhattan Beach-style pier, ocean, and palm trees, with paper flowers on the passenger seat">
 <defs>
 <linearGradient id="night" x2="0" y2="1"><stop stop-color="#242039"/><stop offset=".65" stop-color="#57445d"/><stop offset="1" stop-color="#a97782"/></linearGradient>
 <linearGradient id="dash" x2="0" y2="1"><stop stop-color="#3d3347"/><stop offset=".35" stop-color="#251f31"/><stop offset="1" stop-color="#16131f"/></linearGradient>
@@ -45,9 +45,54 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <rect width="1000" height="620" fill="url(#night)"/>
 <circle class="moon-halo" cx="775" cy="105" r="112" fill="url(#halo)"/><circle cx="775" cy="105" r="28" fill="#f4dfc1"/><circle cx="786" cy="98" r="25" fill="#363047"/>
 <g class="scenestars" fill="#f2dec1" opacity=".8"><circle cx="133" cy="110" r="1.6"/><circle cx="249" cy="58" r="1"/><circle cx="414" cy="112" r="1.7"/><circle cx="547" cy="52" r="1.2"/><circle cx="675" cy="143" r="1"/><circle cx="905" cy="170" r="1.6"/><circle cx="878" cy="61" r="1.2"/><circle cx="323" cy="177" r="1"/><circle cx="532" cy="183" r="1.5"/><path d="m623 79 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></g>
-<path d="M0 257 87 214 171 236 289 201 398 240 510 205 612 234 730 199 825 229 945 209 1000 236v150H0Z" fill="#312c43"/><path d="M0 279 151 250 259 268 419 237 554 269 717 245 840 263 1000 250v138H0Z" fill="#272637"/>
-<path d="m465 265-96 83h271l-111-83Z" fill="#20222d"/><path d="m497 275-5 13m-5 12-7 20" stroke="#d5b7ac" stroke-width="2" opacity=".45"/>
-<g fill="#b395ab" opacity=".4"><rect x="151" y="240" width="3" height="32"/><rect x="179" y="231" width="3" height="35"/><rect x="833" y="230" width="3" height="39"/></g>
+<!-- Moonlit ocean and a Manhattan Beach-inspired pier. -->
+<defs>
+<linearGradient id="ocean" x2="0" y2="1"><stop stop-color="#526480"/><stop offset=".6" stop-color="#344c68"/><stop offset="1" stop-color="#566879"/></linearGradient>
+<linearGradient id="sand" x2="0" y2="1"><stop stop-color="#9b8291"/><stop offset="1" stop-color="#615268"/></linearGradient>
+<linearGradient id="pier-deck" x2="0" y2="1"><stop stop-color="#b8a7ac"/><stop offset="1" stop-color="#7c7186"/></linearGradient>
+<g id="beach-palm">
+<path d="M0 182Q10 92 0 0" fill="none" stroke="#292a39" stroke-width="10"/>
+<path d="M1 4Q-36-23-65-3Q-37-10-5 12M0 4Q-49 0-57 36Q-34 15-1 13M0 5Q-25-35-49-36Q-21-28 4 10M0 4Q-2-44 19-55Q7-25 7 9M3 4Q36-29 65-14Q32-15 8 12M3 7Q49-1 66 29Q33 13 6 17M0 8Q-16 26-11 51Q-6 28 8 14" fill="#303c45" stroke="#60716d" stroke-width="1"/>
+</g>
+</defs>
+<path d="M0 187Q300 182 500 186T1000 185V351H0Z" fill="url(#ocean)"/>
+<path d="M0 188Q400 183 1000 186" fill="none" stroke="#b0a0b9" opacity=".4"/>
+<g fill="none" stroke="#bdc2d4" stroke-width="1" opacity=".24">
+<path d="M97 207h102m80-8h83m271 8h111m60-7h91M60 232h146m57-11h111m298 9h137m49-12h147M124 256h147m-212 13h74m544-14h88m51 14h124M23 286h170m94-6h70m307 9h127m42-5h156"/>
+<path d="m761 189-9 8h31l-8 7h-33m-5 9h53m-62 9h76m-85 10h44m-54 10h104" stroke="#ead5c4" opacity=".7"/>
+</g>
+<path d="M0 303Q113 284 225 299T444 304T668 298T1000 302V366H0Z" fill="url(#sand)"/>
+<path d="M0 296Q111 279 227 294T445 298T668 292T1000 296" fill="none" stroke="#e1d4d3" stroke-width="3" opacity=".55"/>
+<path d="M0 287Q111 273 227 286T445 291T668 285T1000 289" fill="none" stroke="#d3c9d9" opacity=".25"/>
+<!-- Pier pilings and the roundhouse at its ocean end. -->
+<g fill="#292d42" stroke="#647388" stroke-width="1">
+<path d="m458 239 4 40 6 1 1-41Zm35 0 2 47 7 2 1-49Zm40 0 1 48 7-2 1-46Zm37 0-1 41 7-2 4-39Z"/>
+</g>
+<path d="M448 232h140v12H448Z" fill="#798594" stroke="#c4b3bc"/>
+<path d="M472 233v-31h91v31" fill="#b7aaa9" stroke="#e1c7bd"/>
+<path d="m467 202 50-24 51 24Z" fill="#b88188" stroke="#e3b6a5" stroke-width="1.5"/>
+<path d="m517 179 1-12m-5 5h9" stroke="#c9b6aa" stroke-width="1.4"/>
+<g fill="#333b52" stroke="#dfc3b5" stroke-width="1.2"><path d="M482 210h13v19h-13Zm23 0h11v19h-11Zm23 0h11v19h-11Zm23 0h7v19h-7Z"/></g>
+<path d="m478 200 39-19 40 19m-57 1 17-20 17 20" fill="none" stroke="#edc4b2" opacity=".4"/>
+<!-- A broad walkway draws the eye from the beach to the pavilion. -->
+<path d="m490 239-92 98h244l-99-98Z" fill="url(#pier-deck)" stroke="#cfb7bc" stroke-width="1.5"/>
+<g stroke="#d0b8be" opacity=".35"><path d="M483 248h69m-79 10h89m-99 11h110m-123 14h137m-150 15h166m-183 18h204"/></g>
+<path d="m488 236-95 97m152-97 102 97" fill="none" stroke="#668f99" stroke-width="6"/>
+<path d="m488 231-95 88m152-88 102 88" fill="none" stroke="#b0bdbe" stroke-width="1.8"/>
+<g stroke="#aeb9bf" stroke-width="2">
+<path d="M479 241v15m-17 1v17m-20 2v20m-25 3v23m-23-1v19M555 241v15m18 1v17m21 2v20m25 3v23m27-1v19"/>
+</g>
+<g stroke="#3c4253" stroke-width="2" fill="#f3dbb3">
+<path d="M456 247v-20m-33 54v-24m-35 62v-30M578 247v-20m34 54v-24m36 62v-30"/>
+<circle cx="456" cy="225" r="3"/><circle cx="423" cy="255" r="3.5"/><circle cx="388" cy="287" r="4"/>
+<circle cx="578" cy="225" r="3"/><circle cx="612" cy="255" r="3.5"/><circle cx="648" cy="287" r="4"/>
+</g>
+<!-- Palms frame the ocean view, like the approach to Manhattan Beach Pier. -->
+<use href="#beach-palm" transform="translate(145 132) scale(.95 1.1)"/>
+<use href="#beach-palm" transform="translate(231 166) scale(.7 .92)"/>
+<use href="#beach-palm" transform="translate(848 132) scale(.95 1.1)"/>
+<use href="#beach-palm" transform="translate(767 170) scale(.66 .88)"/>
+<path d="M0 329h369m296 0h335" stroke="#c5acb5" stroke-width="3" opacity=".5"/>
 <!-- Windshield frame and a rear-view mirror. The car is parked. -->
 <path d="M-15 370 35 118Q51 40 139 20h722q88 20 104 98l50 252" fill="none" stroke="#181722" stroke-width="35"/><path d="M43 318 78 126q15-57 72-65M957 318l-35-192q-15-57-72-65" fill="none" stroke="#b28aa5" stroke-opacity=".25" stroke-width="2"/>
 <path d="M500 0v60" stroke="#211d2c" stroke-width="18"/><rect x="422" y="53" width="156" height="45" rx="15" fill="#171622" stroke="#8b708a" stroke-opacity=".4"/><rect x="432" y="61" width="136" height="27" rx="8" fill="#4a3c51"/><text x="500" y="79" text-anchor="middle" fill="#d1b8cb" font-family="sans-serif" font-size="10" letter-spacing="2">YOU + ME</text>
