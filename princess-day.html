@@ -16,6 +16,9 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 @media(min-width:1300px){.shell{max-width:1160px}.scene{aspect-ratio:1000/570}.hero{padding-top:55px}}
 @media(max-width:650px){.shell{padding:0 19px}.topbar{height:71px}.date-stamp{font-size:8px;letter-spacing:1.5px}.signature{font-size:11px}.hero{padding:33px 0 24px}h1{font-size:49px}.lede{font-size:12px;max-width:320px}.crown-button{width:62px;height:54px;margin-bottom:13px}.scene-heading{font-size:8px;align-items:start}.scene-heading span:first-child{font-size:8px;max-width:145px;line-height:1.8}.scene-heading span:last-child{max-width:140px;text-align:right;line-height:1.8}.scene{border-radius:70px 70px 18px 18px;aspect-ratio:1/1.04}.scene>svg{width:158%;left:-29%;height:100%}.hotspot{font-size:10px;gap:5px;padding:8px 11px;min-height:43px}.rain-button{left:62%;top:22%}.radio-button{left:42%;top:75%}.glove-button{left:85%;top:65%}.flowers-button{left:59%;top:88%}.seat-button{left:77%;top:92%}.rain-badge{font-size:8px;white-space:nowrap;top:36%}.royal-invitation{padding:30px 0 32px}.royal-invitation>p{font-size:26px}.letter-paper{padding:43px 27px 28px}.letter-paper h2{font-size:35px}.footer{font-size:9px;gap:10px}.tap-cue{font-size:9px}.footer button{font-size:9px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.spark,.royal-particle{display:none}}
+
+#glove-door{transform-box:fill-box;transform-origin:center bottom;transition:transform .45s ease}.glove-open #glove-door{transform:translateY(30px) scaleY(.22)}.glove-button{transition:top .35s,background .2s,box-shadow .2s}.glove-open .glove-button{top:54%}.glove-card{position:absolute;z-index:4;left:80%;top:65%;width:21%;height:12%;padding:0;border:0;background:none;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 5px #0008);transition:filter .2s}.glove-card:hover{filter:drop-shadow(0 0 8px #ecc1bd88)}.glove-card svg{display:block;width:100%;height:100%;overflow:visible}.glove-card:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:8px}
+@media(max-width:650px){.glove-card{left:87%;width:30%;height:12%}.glove-open .glove-button{left:84%;top:54%}}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -133,7 +136,9 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <rect x="375" y="339" width="217" height="97" rx="14" fill="#131622" stroke="#89718f" stroke-opacity=".45"/><rect x="386" y="350" width="195" height="75" rx="7" fill="#25233a"/><text id="console-memory" x="484" y="388" fill="#f3dfeb" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="middle" aria-live="polite"></text>
 <rect x="417" y="449" width="134" height="18" rx="9" fill="#15131e"/><circle cx="431" cy="458" r="5" fill="#88718e"/><circle cx="537" cy="458" r="5" fill="#88718e"/>
 <!-- Glove compartment and the passenger seat -->
-<path d="M659 368h281v84H661q-12-37-2-84Z" fill="#332a3d" stroke="#8f728c" stroke-opacity=".35"/><rect x="783" y="380" width="42" height="6" rx="3" fill="#b795b0"/><path d="M667 443h261" stroke="#b795b0" stroke-dasharray="4 5" opacity=".25"/>
+<path d="M659 368h281v84H661q-12-37-2-84Z" fill="#14111e" stroke="#8f728c" stroke-opacity=".5"/>
+<path d="M670 377h258v64H670Z" fill="#211a2c"/>
+<g id="glove-door"><path d="M659 368h281v84H661q-12-37-2-84Z" fill="#332a3d" stroke="#8f728c" stroke-opacity=".35"/><rect x="783" y="380" width="42" height="6" rx="3" fill="#b795b0"/><path d="M667 443h261" stroke="#b795b0" stroke-dasharray="4 5" opacity=".25"/></g>
 <path d="M620 620 652 488q5-31 38-35h205q32 4 40 35l36 132" fill="url(#seat)" stroke="#a17b9a" stroke-opacity=".35"/><path d="m641 620 29-121q3-19 29-21h187q26 2 31 21l29 121" fill="url(#stitch)"/><rect x="714" y="438" width="157" height="46" rx="19" fill="#50394f" stroke="#a17b9a" stroke-opacity=".4"/><path d="m916 455 45 165" stroke="#1a1825" stroke-width="19"/>
 <!-- A little handmade paper bouquet. -->
 <g id="paper-bouquet" transform="translate(697 510) rotate(-18)"><path d="m-48-21 38 103 47-91Z" fill="#ddc2a7"/><path d="m-48-21 39 51L37-9-5 16Z" fill="#f3dfc0"/><path d="M-5 5 2 64M-23-8 2 64M20-7 2 64" stroke="#78896d" stroke-width="3"/><g fill="#a8b496"><ellipse cx="-14" cy="18" rx="7" ry="16" transform="rotate(-35 -14 18)"/><ellipse cx="13" cy="25" rx="7" ry="15" transform="rotate(35 13 25)"/></g><g fill="url(#rose)" stroke="#f9dbe3" stroke-width=".8"><path d="m-24-48 13 8 4 17-10 13-17-1-11-14 6-17Z"/><path d="m4-52 16 5 8 16-7 16-18 2-12-13 1-17Z"/><path d="m-3-25 13 8 3 17-12 12-16-4-7-15 7-15Z"/></g><g fill="none" stroke="#ac7497" stroke-width="1"><path d="m-24-39 7 9-7 11-10-8 8-6 6 5M9-42l8 9-7 9-10-8 9-4 4 5M-4-15l8 9-6 9-8-8 8-3"/></g><path d="m-5 51-18-8 8 17 18-8 16 12 7-17-21 4" fill="#bd7b9e"/><path d="M1 54-6 78m9-24 12 22" stroke="#bd7b9e" stroke-width="5"/></g>
@@ -142,7 +147,22 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <canvas id="rain-canvas" aria-hidden="true"></canvas>
 <button class="hotspot rain-button" id="rain-button" aria-pressed="false"><span class="dot" aria-hidden="true">✧</span> A little AI rain</button>
 <button class="hotspot radio-button" id="radio-button"><span class="dot" aria-hidden="true">♫</span> A little memory</button>
-<button class="hotspot glove-button" id="glove-button"><span class="dot" aria-hidden="true">✉</span> Open me</button>
+<button class="hotspot glove-button" id="glove-button" aria-expanded="false" aria-controls="glove-card"><span class="dot" aria-hidden="true">✉</span><span id="glove-button-label">Open me</span></button>
+<button type="button" class="glove-card" id="glove-card" aria-label="Open the handwritten card for Hayley" hidden>
+<svg viewBox="0 0 240 100" role="img" aria-label="A cream folded note card with coral borders, addressed to my sweet Hayley">
+<defs><pattern id="card-fibers" width="14" height="12" patternUnits="userSpaceOnUse"><path d="m2 2 3 2m5 4 2-2M2 10l2-2" fill="none" stroke="#a99d8b" stroke-width=".4" opacity=".3"/></pattern></defs>
+<path d="M7 7 225 3 235 91 14 97Z" fill="#eee7d2" stroke="#d1bfa9" stroke-width="1"/>
+<path d="M7 7 225 3 235 91 14 97Z" fill="url(#card-fibers)"/>
+<path d="m13 12 18-2 13 3 15-3 14 2 15-3 15 2 16-3 15 2 16-3 16 2 15-3 17 2 17-2M15 16l5 73 19 1 15-2 15 1 16-2 14 1 17-2 16 2 15-3 17 2 15-3 18 1 17-2 13 1-8-69" fill="none" stroke="#e79397" stroke-width="3" stroke-linecap="round"/>
+<path d="m77 9 15 83M165 6l15 86M78 11l88 76M165 8 93 91" fill="none" stroke="#d6c8b3" stroke-width="1"/>
+<path d="m77 9 15 83m73-86 15 86" stroke="#e89b9b" stroke-width="2"/>
+<g fill="#354468" font-family="Bradley Hand, Segoe Print, cursive" font-style="italic">
+<path d="m23 31 7-2 4 3 8-3 5 2 7-1m-29 15 6-2 5 2 7-3 5 2 7-2 5 2" fill="none" stroke="#354468" stroke-width="1" stroke-linecap="round"/>
+<text x="105" y="54" font-size="15" transform="rotate(-5 105 54)">Pull me</text>
+<path d="m190 46 5-1 4 2 5-2m-15 12 6-2 3 2 6-1" fill="none" stroke="#354468" stroke-width=".8" stroke-linecap="round"/>
+</g>
+<path d="m137 62-2 16m-5-5 5 6 6-5" fill="none" stroke="#354468" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></button>
 <button class="hotspot flowers-button" id="flowers-button"><span class="dot" aria-hidden="true">❀</span> For you</button>
 <button class="hotspot seat-button" id="seat-button"><span class="dot" aria-hidden="true">♡</span> Your seat</button>
 <div class="rain-badge" aria-hidden="true">A little Dataland weather. A very good memory. ♡</div>
@@ -176,7 +196,9 @@ const notes={
 };
 function discover(key,button){discoveries.add(key);button.classList.add('seen');$('discovery-count').textContent=discoveries.size+' of 5 found';if(discoveries.size===5&&!document.body.dataset.allFound){document.body.dataset.allFound='true';}}
 function openNote(kind){const n=notes[kind];$('note-label').textContent=n.label;$('note-title').textContent=n.title;$('note-body').replaceChildren(...n.body.map(text=>{const p=document.createElement('p');p.textContent=text;return p;}));$('note-dialog').showModal();}
-for(const kind of ['glove','flowers','seat'])$(kind+'-button').addEventListener('click',()=>{discover(kind,$(kind+'-button'));if(kind==='flowers')$('scene').classList.add('flower-open');openNote(kind);});
+for(const kind of ['flowers','seat'])$(kind+'-button').addEventListener('click',()=>{discover(kind,$(kind+'-button'));if(kind==='flowers')$('scene').classList.add('flower-open');openNote(kind);});
+$('glove-button').onclick=()=>{const opened=$('glove-button').getAttribute('aria-expanded')!=='true';$('glove-button').setAttribute('aria-expanded',String(opened));$('scene').classList.toggle('glove-open',opened);$('glove-card').hidden=!opened;$('glove-button-label').textContent=opened?'Close glove box':'Open me';if(opened)discover('glove',$('glove-button'));};
+$('glove-card').onclick=()=>openNote('glove');
 function anotherRadioMemory(){discover('radio',$('radio-button'));const n=radioMessages[radioIndex++%radioMessages.length],screen=$('console-memory'),lines=[];let line='';for(const word of n.text.split(' ')){if(line&&(line+' '+word).length>33){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);screen.replaceChildren(...lines.map((text,i)=>{const span=document.createElementNS('http://www.w3.org/2000/svg','tspan');span.setAttribute('x','484');span.setAttribute('y',String(388-(lines.length-1)*6+i*12));span.textContent=text;return span;}));screen.setAttribute('aria-label',n.text);sparkles($('radio-button'),7);}
 $('radio-button').addEventListener('click',anotherRadioMemory);
 function sparkles(origin,count=14){if(paused||reduceMotion.matches)return;const r=origin.getBoundingClientRect();for(let i=0;i<count;i++){const el=document.createElement('span');el.className='spark';el.textContent=i%3?'♡':'✧';el.style.left=r.left+r.width/2+'px';el.style.top=r.top+r.height/2+'px';el.style.setProperty('--dx',(Math.random()-.5)*180+'px');el.style.setProperty('--dy',-30-Math.random()*110+'px');el.style.setProperty('--turn',(Math.random()-.5)*80+'deg');document.body.append(el);setTimeout(()=>el.remove(),1700);}}
