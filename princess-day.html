@@ -19,6 +19,14 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 
 #glove-door{transform-box:fill-box;transform-origin:center bottom;transition:transform .45s ease}.glove-open #glove-door{transform:translateY(30px) scaleY(.22)}.glove-button{transition:top .35s,background .2s,box-shadow .2s}.glove-open .glove-button{top:54%}.glove-card{position:absolute;z-index:4;left:80%;top:65%;width:21%;height:12%;padding:0;border:0;background:none;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 5px #0008);transition:filter .2s}.glove-card:hover{filter:drop-shadow(0 0 8px #ecc1bd88)}.glove-card svg{display:block;width:100%;height:100%;overflow:visible}.glove-card:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:8px}
 @media(max-width:650px){.glove-card{left:86%;width:24%;height:12%}.glove-open .glove-button{left:84%;top:54%}}
+
+.crown-button{position:relative;border-radius:50%;animation:crown-glow 2.5s ease-in-out infinite}
+.crown-button::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid #e8d1a45c;background:radial-gradient(ellipse,#e8d1a425,transparent 72%);pointer-events:none;animation:crown-halo 2.5s ease-in-out infinite}
+@keyframes crown-glow{0%,100%{filter:drop-shadow(0 0 3px #e8d1a455)}50%{filter:drop-shadow(0 0 11px #f4d49fbb) drop-shadow(0 0 22px #e8d1a455)}}
+@keyframes crown-halo{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:.9;transform:scale(1.13)}}
+.crown-button:hover{animation:none;filter:drop-shadow(0 0 14px #f4d49f)}
+@media(prefers-reduced-motion:reduce){.crown-button{filter:drop-shadow(0 0 8px #e8d1a488)}.crown-button::before{opacity:.6}}
+.magic-paused .crown-button::before{animation-play-state:paused}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -220,7 +228,7 @@ function drawRain(time){frame=0;if(!ctx||!raining||paused||document.hidden)retur
 function startRain(){if(!frame&&raining&&!paused&&!document.hidden){lastFrame=0;frame=requestAnimationFrame(drawRain);}}
 let rainBadgeTimer;
 $('rain-button').onclick=()=>{raining=!raining;$('scene').classList.toggle('raining',raining);$('rain-button').setAttribute('aria-pressed',String(raining));discover('rain',$('rain-button'));clearTimeout(rainBadgeTimer);const badge=document.querySelector('.rain-badge');badge.classList.toggle('is-visible',raining);if(raining){rainBadgeTimer=setTimeout(()=>badge.classList.remove('is-visible'),5000);resizeRain();startRain();}else{cancelAnimationFrame(frame);frame=0;ctx?.clearRect(0,0,rainWidth,rainHeight);}};
-function syncMotion(){document.querySelectorAll('.sky i,.moon-halo,.scenestars circle').forEach(el=>el.style.animationPlayState=paused?'paused':'running');$('motion-button').setAttribute('aria-pressed',String(paused));$('motion-button').textContent=paused?'Resume the magic':'Pause the magic';if(paused){cancelAnimationFrame(frame);frame=0;ctx?.clearRect(0,0,rainWidth,rainHeight);document.querySelectorAll('.spark,.royal-particle').forEach(el=>el.remove());}else startRain();}
+function syncMotion(){document.body.classList.toggle('magic-paused',paused);document.querySelectorAll('.sky i,.moon-halo,.scenestars circle,.crown-button').forEach(el=>el.style.animationPlayState=paused?'paused':'running');$('motion-button').setAttribute('aria-pressed',String(paused));$('motion-button').textContent=paused?'Resume the magic':'Pause the magic';if(paused){cancelAnimationFrame(frame);frame=0;ctx?.clearRect(0,0,rainWidth,rainHeight);document.querySelectorAll('.spark,.royal-particle').forEach(el=>el.remove());}else startRain();}
 $('motion-button').onclick=()=>{paused=!paused;syncMotion();};reduceMotion.addEventListener('change',e=>{paused=e.matches;syncMotion();});document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else startRain();});window.addEventListener('resize',()=>{resizeRain();});
 for(let i=0;i<42;i++){const star=document.createElement('i');star.style.left=Math.random()*100+'%';star.style.top=Math.random()*100+'%';star.style.animationDelay=-Math.random()*5+'s';document.querySelector('.sky').append(star);}syncMotion();
 </script>
