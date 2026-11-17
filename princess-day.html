@@ -48,13 +48,26 @@ dialog{padding:0;color:#382c3c;border:1px solid #f0d4d7;background:#f6eedd;borde
 <circle class="moon-halo" cx="775" cy="105" r="112" fill="url(#halo)"/><circle cx="775" cy="105" r="28" fill="#f4dfc1"/><circle cx="786" cy="98" r="25" fill="#363047"/>
 <g class="scenestars" fill="#f2dec1" opacity=".8"><circle cx="133" cy="110" r="1.6"/><circle cx="249" cy="58" r="1"/><circle cx="414" cy="112" r="1.7"/><circle cx="547" cy="52" r="1.2"/><circle cx="675" cy="143" r="1"/><circle cx="905" cy="170" r="1.6"/><circle cx="878" cy="61" r="1.2"/><circle cx="323" cy="177" r="1"/><circle cx="532" cy="183" r="1.5"/><path d="m623 79 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></g>
 <!-- A distant plane, a little nod to watching the skies together near LAX. -->
-<g id="little-plane" transform="translate(670 90) rotate(-8) scale(.88)" opacity=".9">
-<title>A small upright passenger plane flying across the night sky.</title>
-<!-- Side profile: tail fin above the fuselage, swept wing below. -->
-<path d="m-26 1 7-2-4-13h5l11 12H18q8 0 12 5-3 3-12 3H3l-14 10h-6l8-10h-12Z" fill="#d7d6de" stroke="#f4e6d3" stroke-width=".65" stroke-linejoin="round"/>
-<path d="m-13 2 5 3m-10-12 5 5M19 0l5 2h-6" fill="none" stroke="#8e8ca4" stroke-width=".8"/>
-<g fill="#6b708d"><circle cx="-4" cy="1.5" r=".75"/><circle cx="0" cy="1.5" r=".75"/><circle cx="4" cy="1.5" r=".75"/><circle cx="8" cy="1.5" r=".75"/><circle cx="12" cy="1.5" r=".75"/></g>
-<circle cx="-13" cy="15.5" r="1" fill="#e7a5ae"/><circle cx="-20" cy="-11" r=".8" fill="#f5dec0"/>
+<g id="little-plane" transform="translate(675 91) rotate(-5)" opacity=".96">
+<title>A passenger jet with a blue tail, cabin windows, swept wings, and engines.</title>
+<defs><linearGradient id="jet-body" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fbf5eb"/><stop offset=".6" stop-color="#dbdfeb"/><stop offset="1" stop-color="#8f9db6"/></linearGradient></defs>
+<!-- Far wing, then upright tail fin and horizontal stabilizer. -->
+<path d="m-8 0-16-13h7L7 0Z" fill="#9caac2" stroke="#e1e5ee" stroke-width=".65"/>
+<path d="m-29 0-7-20h7l17 21Z" fill="#7194c6" stroke="#d6dfed" stroke-width=".7"/>
+<path d="m-29-15 6 2 7 11-7-2Z" fill="#c5d6ef" opacity=".75"/>
+<path d="m-25 2-17-6h-4l10 10Z" fill="#c0cadd" stroke="#e1e5ee" stroke-width=".65"/>
+<!-- Long rounded fuselage and tapered nose. -->
+<path d="M-38 0Q-17-2 15-2q9 0 14 3l9 6q2 2-2 3-12 4-28 3l-38-4q-8-1-11-5Z" fill="url(#jet-body)" stroke="#f1e9e0" stroke-width=".8"/>
+<path d="M-30 7Q0 12 30 9" fill="none" stroke="#7291b8" stroke-width="1.1"/>
+<!-- Cockpit glazing and the row of cabin windows. -->
+<path d="m24 1 4 1 6 4h-6Z" fill="#47546f"/><path d="m22 1 2 5h-4l-1-5Z" fill="#59677e"/>
+<g fill="#53617b"><rect x="-24" y="1" width="2.3" height="2.8" rx="1"/><rect x="-18" y="1" width="2.3" height="2.8" rx="1"/><rect x="-12" y="1" width="2.3" height="2.8" rx="1"/><rect x="-6" y="1" width="2.3" height="2.8" rx="1"/><rect y="1" width="2.3" height="2.8" rx="1"/><rect x="6" y="1" width="2.3" height="2.8" rx="1"/><rect x="12" y="1" width="2.3" height="2.8" rx="1"/></g>
+<!-- Swept near wing with a visible engine nacelle beneath it. -->
+<path d="m1 6-23 21h-10l15-21Z" fill="#ced7e5" stroke="#f3ede4" stroke-width=".8" stroke-linejoin="round"/>
+<path d="m-18 20 14-12" stroke="#92a6c4" stroke-width=".9"/>
+<path d="m-7 12 12 1q4 1 4 4t-4 4l-12-2q-4-2 0-7Z" fill="#bac8dc" stroke="#e9e7e5" stroke-width=".7"/>
+<ellipse cx="7" cy="17" rx="2" ry="3.2" fill="#4b5870"/><ellipse cx="7.3" cy="17" rx=".75" ry="1.8" fill="#8999af"/>
+<circle cx="-27" cy="26" r="1.1" fill="#f0adb8"/><circle cx="-33" cy="-20" r=".9" fill="#f5debd"/>
 </g>
 <!-- Moonlit ocean and a Manhattan Beach-inspired pier. -->
 <defs>
