@@ -40,6 +40,9 @@ h1{font-size:clamp(35px,10vw,43px);line-height:1.08}.hero{padding-top:26px}.scen
 .glove-card{left:80%;top:65%;width:25%;height:20%}.rain-badge{max-width:85%;white-space:normal;text-align:center;top:37%;font-size:8px}
 .tap-cue{line-height:1.7}.soundtrack{gap:10px}.scene-heading{gap:14px}
 }
+
+.console-music-toggle{position:absolute;z-index:3;left:48.4%;top:61.7%;width:19.5%;height:12.1%;min-height:44px;transform:translate(-50%,-50%);background:transparent;border:0;border-radius:8px;cursor:pointer}.console-music-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.console-music-toggle:hover{box-shadow:inset 0 0 16px #e9b8cb1a}.music-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:650px){.console-music-toggle{left:48.4%;top:61.7%;width:19.5%;height:12.1%}}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -162,7 +165,14 @@ h1{font-size:clamp(35px,10vw,43px);line-height:1.08}.hero{padding-top:26px}.scen
 <path d="M0 346Q500 282 1000 346v274H0Z" fill="url(#dash)"/><path class="ambient-line" d="M15 350Q500 302 985 350" fill="none" stroke="#1688ed" stroke-width="2.5" opacity=".95"/><path d="M0 390q500-44 1000 0" fill="none" stroke="#a1869f" stroke-opacity=".14"/>
 <!-- Steering wheel and console -->
 <g transform="translate(222 409)"><circle r="85" fill="#191720" stroke="#9a8196" stroke-opacity=".5" stroke-width="2"/><circle r="67" fill="#2c2737" stroke="#655068" stroke-width="13"/><path d="M-64-18h128L17 25l-6 47h-22l-6-47Z" fill="#1d1a28"/><circle r="20" fill="#3c2e43"/><path d="M-9-2q9-15 18 0L0 12Z" fill="none" stroke="#caa1bd" stroke-width="1.5"/></g>
-<rect x="375" y="339" width="217" height="97" rx="14" fill="#131622" stroke="#89718f" stroke-opacity=".45"/><rect x="386" y="350" width="195" height="75" rx="7" fill="#25233a"/><text id="console-memory" x="484" y="388" fill="#f3dfeb" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="middle" aria-live="polite"></text>
+<rect x="375" y="339" width="217" height="97" rx="14" fill="#131622" stroke="#89718f" stroke-opacity=".45"/><rect x="386" y="350" width="195" height="75" rx="7" fill="#25233a"/><g id="console-player-art" pointer-events="none">
+<text x="399" y="365" fill="#fff5ed" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Iris</text>
+<text x="399" y="378" fill="#bdb1c9" font-family="DM Sans, sans-serif" font-size="8">Goo Goo Dolls</text>
+<circle cx="557" cy="368" r="12" fill="#e3c4d5"/><path id="console-play-icon" d="m554 362 8 6-8 6Z" fill="#292033"/>
+<path d="M399 416H568" stroke="#6c5b79" stroke-width="2" stroke-linecap="round"/>
+<path id="song-progress" d="M399 416H568" pathLength="100" stroke="#e3c4d5" stroke-width="2" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"/>
+</g>
+<text id="console-memory" x="484" y="399" fill="#f3dfeb" font-family="DM Sans, sans-serif" font-size="7.5" text-anchor="middle" aria-live="polite"></text>
 <rect x="417" y="449" width="134" height="18" rx="9" fill="#15131e"/><circle cx="431" cy="458" r="5" fill="#88718e"/><circle cx="537" cy="458" r="5" fill="#88718e"/>
 <!-- Glove compartment and the passenger seat -->
 <path d="M659 368h281v84H661q-12-37-2-84Z" fill="#14111e" stroke="#8f728c" stroke-opacity=".5"/>
@@ -174,6 +184,7 @@ h1{font-size:clamp(35px,10vw,43px);line-height:1.08}.hero{padding-top:26px}.scen
 <text x="140" y="566" fill="#b99bb6" font-family="sans-serif" font-size="10" letter-spacing="3">PARKED UNDER THE STARS</text><text x="140" y="587" fill="#786b88" font-family="sans-serif" font-size="8" letter-spacing="2">NO DESTINATION REQUIRED.</text>
 </svg>
 <canvas id="rain-canvas" aria-hidden="true"></canvas>
+<button type="button" id="music-toggle" class="console-music-toggle" aria-label="Play Iris by Goo Goo Dolls" aria-pressed="false" aria-controls="our-song"></button><span id="song-status" class="music-sr-only" role="status" aria-live="polite"></span>
 <button class="hotspot rain-button" id="rain-button" aria-pressed="false"><span class="dot" aria-hidden="true">✧</span> A little AI rain</button>
 <button class="hotspot radio-button" id="radio-button"><span class="dot" aria-hidden="true">♫</span> A little memory</button>
 <button class="hotspot glove-button" id="glove-button" aria-expanded="false" aria-controls="glove-card"><span class="dot" aria-hidden="true">✉</span><span id="glove-button-label">Open me</span></button>
@@ -198,7 +209,6 @@ h1{font-size:clamp(35px,10vw,43px);line-height:1.08}.hero{padding-top:26px}.scen
 </div>
 <div id="mobile-controls" class="mobile-controls" aria-label="Explore the little surprises"></div><p id="mobile-memory" class="mobile-memory" role="status" aria-live="polite"></p>
 <p class="tap-cue">Five little discoveries. <b id="discovery-count">0 of 5 found</b> · No wrong order.</p>
-<div class="soundtrack" aria-label="Our little soundtrack"><button type="button" class="music-toggle" id="music-toggle" aria-pressed="false" aria-controls="our-song"><span id="music-icon" aria-hidden="true">▶</span><span id="music-label">Play our song</span></button><p class="song-status" id="song-status" role="status" aria-live="polite">Iris · Goo Goo Dolls</p></div>
 <audio id="our-song" preload="none" src="./Iris%20-%20Goo%20Goo%20Dolls%20short.mp3"></audio>
 </section>
 <section class="royal-invitation" aria-label="Your Princess Day letter"><p>Not all princesses need a castle.</p><small>Some just need their favorite seat and a little royal treatment.</small><button class="primary" id="letter-button">A little royal treatment for you &nbsp; ♡</button></section>
@@ -235,7 +245,7 @@ function openNote(kind){const n=notes[kind];$('note-label').textContent=n.label;
 for(const kind of ['flowers','seat'])$(kind+'-button').addEventListener('click',()=>{discover(kind,$(kind+'-button'));if(kind==='flowers')$('scene').classList.add('flower-open');openNote(kind);});
 $('glove-button').onclick=()=>{const opened=$('glove-button').getAttribute('aria-expanded')!=='true';$('glove-button').setAttribute('aria-expanded',String(opened));$('scene').classList.toggle('glove-open',opened);$('glove-card').hidden=!opened;$('glove-button-label').textContent=opened?'Close glove box':'Open me';if(opened)discover('glove',$('glove-button'));};
 $('glove-card').onclick=()=>openNote('glove');
-function anotherRadioMemory(){discover('radio',$('radio-button'));const n=radioMessages[radioIndex++%radioMessages.length],screen=$('console-memory'),lines=[];let line='';for(const word of n.text.split(' ')){if(line&&(line+' '+word).length>33){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);screen.replaceChildren(...lines.map((text,i)=>{const span=document.createElementNS('http://www.w3.org/2000/svg','tspan');span.setAttribute('x','484');span.setAttribute('y',String(388-(lines.length-1)*6+i*12));span.textContent=text;return span;}));screen.setAttribute('aria-label',n.text);$('mobile-memory').textContent=n.text;sparkles($('radio-button'),7);}
+function anotherRadioMemory(){discover('radio',$('radio-button'));const n=radioMessages[radioIndex++%radioMessages.length],screen=$('console-memory'),lines=[];let line='';for(const word of n.text.split(' ')){if(line&&(line+' '+word).length>33){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);screen.replaceChildren(...lines.map((text,i)=>{const span=document.createElementNS('http://www.w3.org/2000/svg','tspan');span.setAttribute('x','484');span.setAttribute('y',String(398-(lines.length-1)*4+i*8));span.textContent=text;return span;}));screen.setAttribute('aria-label',n.text);$('mobile-memory').textContent=n.text;sparkles($('radio-button'),7);}
 $('radio-button').addEventListener('click',anotherRadioMemory);
 function sparkles(origin,count=14){if(paused||reduceMotion.matches)return;const r=origin.getBoundingClientRect();for(let i=0;i<count;i++){const el=document.createElement('span');el.className='spark';el.textContent=i%3?'♡':'✧';el.style.left=r.left+r.width/2+'px';el.style.top=r.top+r.height/2+'px';el.style.setProperty('--dx',(Math.random()-.5)*180+'px');el.style.setProperty('--dy',-30-Math.random()*110+'px');el.style.setProperty('--turn',(Math.random()-.5)*80+'deg');document.body.append(el);setTimeout(()=>el.remove(),1700);}}
 function celebrate(){if(paused||reduceMotion.matches)return;const holder=$('celebration'),colors=['#f2c2d6','#e4cc9e','#b5b8e9','#d9b2e4','#fff0d9'];for(let i=0;i<95;i++){const el=document.createElement('i'),angle=Math.random()*Math.PI*2,distance=90+Math.random()*Math.min(innerWidth,innerHeight)*.65;el.className='royal-particle';el.style.left='50%';el.style.top='49%';el.style.setProperty('--c',colors[i%colors.length]);el.style.setProperty('--x',Math.cos(angle)*distance+'px');el.style.setProperty('--y',Math.sin(angle)*distance+100+'px');el.style.setProperty('--r',(Math.random()-.5)*1000+'deg');el.style.setProperty('--duration',1.5+Math.random()*1.6+'s');el.style.borderRadius=i%3?'2px':'50%';holder.append(el);setTimeout(()=>el.remove(),3300);}}
@@ -252,11 +262,12 @@ function syncMotion(){document.body.classList.toggle('magic-paused',paused);docu
 $('motion-button').onclick=()=>{paused=!paused;syncMotion();};reduceMotion.addEventListener('change',e=>{paused=e.matches;syncMotion();});document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else startRain();});window.addEventListener('resize',()=>{resizeRain();});
 for(let i=0;i<42;i++){const star=document.createElement('i');star.style.left=Math.random()*100+'%';star.style.top=Math.random()*100+'%';star.style.animationDelay=-Math.random()*5+'s';document.querySelector('.sky').append(star);}syncMotion();
 const song=$('our-song'),musicButton=$('music-toggle'),songStatus=$('song-status');
-function syncSong(){const playing=!song.paused&&!song.ended;musicButton.setAttribute('aria-pressed',String(playing));$('music-icon').textContent=playing?'Ⅱ':'▶';$('music-label').textContent=playing?'Pause our song':'Play our song';}
+function syncSong(){const playing=!song.paused&&!song.ended;musicButton.setAttribute('aria-pressed',String(playing));musicButton.setAttribute('aria-label',(playing?'Pause':'Play')+' Iris by Goo Goo Dolls');$('console-play-icon').setAttribute('d',playing?'M552 362h3v12h-3ZM558 362h3v12h-3Z':'m554 362 8 6-8 6Z');}
 musicButton.addEventListener('click',()=>{if(!song.paused){song.pause();return;}if(song.error)song.load();const attempt=song.play();if(attempt)attempt.catch(error=>{syncSong();if(error.name!=='AbortError')songStatus.textContent='Couldn’t start the song. Tap to try again.';});});
 song.addEventListener('play',()=>{syncSong();songStatus.textContent='Loading our song…';});
 song.addEventListener('playing',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
 song.addEventListener('pause',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
+song.addEventListener('timeupdate',()=>{const fraction=Number.isFinite(song.duration)&&song.duration>0?song.currentTime/song.duration:0;$('song-progress').setAttribute('stroke-dashoffset',String(100-fraction*100));});
 song.addEventListener('ended',()=>{syncSong();songStatus.textContent='Iris · Goo Goo Dolls';});
 song.addEventListener('error',()=>{syncSong();songStatus.textContent='Couldn’t load the song. Tap to try again.';});
 
