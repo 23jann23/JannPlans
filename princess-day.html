@@ -69,6 +69,21 @@ body:has(#memory-sheet[open]){overflow:hidden}
 .memory-sheet h2{font-size:34px}
 @keyframes memory-appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:650px){.memory-sheet-content{padding:42px 25px 26px}.memory-sheet h2{font-size:31px}}
+
+/* Invisible object hit areas share the illustration's coordinate system. */
+.scene .hotspot{position:absolute;display:block;transform:translate(-50%,-50%);translate:none;padding:0;margin:0;min-height:44px;border:0;border-radius:12px;background:transparent;box-shadow:none;color:transparent;font-size:0;z-index:3;transition:none}
+.scene .hotspot:hover{background:transparent;box-shadow:none;translate:none}
+.scene .hotspot.seen::after{display:none}
+.scene .hotspot:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.scene .rain-button{left:50%;top:27%;width:100%;height:54%;z-index:2;border-radius:0}
+.scene .radio-button{left:22.2%;top:66%;width:10%;height:15%}
+.scene .glove-button,.scene.glove-open .glove-button{left:80%;top:66%;width:28%;height:14%}
+.scene .flowers-button{left:70%;top:83%;width:14%;height:22%;z-index:5}
+.scene .seat-button{left:82%;top:87%;width:30%;height:25%;z-index:3}
+.scene .glove-card{z-index:6}
+.scene .console-music-toggle{z-index:5}
+.scene .console-volume{z-index:6}
+@media(max-width:650px){.scene .radio-button{width:13%;height:17%}}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -83,7 +98,7 @@ body:has(#memory-sheet[open]){overflow:hidden}
 <div class="tiny-stars" aria-hidden="true">✧ &nbsp; ♡ &nbsp; ✧</div>
 </section>
 <section class="adventure" aria-label="Your interactive passenger princess scene">
-<div class="scene-heading"><span>01 / YOUR SEAT IS RESERVED</span><span>Tap the little labels. There are surprises inside. ↙</span></div>
+<div class="scene-heading"><span>01 / YOUR SEAT IS RESERVED</span><span>There are little surprises tucked into the scene.</span></div>
 <div class="scene" id="scene">
 <svg viewBox="0 0 1000 620" preserveAspectRatio="none" role="img" aria-label="A parked car overlooking a moonlit Manhattan Beach-style pier, ocean, palm trees, and a small plane in the sky, with paper flowers on the passenger seat">
 <defs>
@@ -212,9 +227,9 @@ body:has(#memory-sheet[open]){overflow:hidden}
 <canvas id="rain-canvas" aria-hidden="true"></canvas>
 <button type="button" id="music-toggle" class="console-music-toggle" aria-label="Play Iris by Goo Goo Dolls" aria-pressed="false" aria-controls="our-song"></button><input id="song-volume" class="console-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Song volume" title="Song volume">
 <span id="song-status" class="music-sr-only" role="status" aria-live="polite"></span>
-<button class="hotspot rain-button" id="rain-button" aria-pressed="false"><span class="dot" aria-hidden="true">✧</span> A little AI rain</button>
-<button class="hotspot radio-button" id="radio-button"><span class="dot" aria-hidden="true">♫</span> A little memory</button>
-<button class="hotspot glove-button" id="glove-button" aria-expanded="false" aria-controls="glove-card"><span class="dot" aria-hidden="true">✉</span><span id="glove-button-label">Open me</span></button>
+<button class="hotspot rain-button" id="rain-button" aria-pressed="false" aria-label="Toggle rain in the scenic background"></button>
+<button class="hotspot radio-button" id="radio-button" aria-label="Open a little memory from the steering wheel"></button>
+<button class="hotspot glove-button" id="glove-button" aria-expanded="false" aria-controls="glove-card" aria-label="Open or close the glove box"><span id="glove-button-label" hidden>Open me</span></button>
 <button type="button" class="glove-card" id="glove-card" aria-label="Open the handwritten card for Hayley" hidden>
 <svg viewBox="0 0 240 100" role="img" aria-label="A cream folded note card with coral borders, addressed to my sweet Hayley">
 <defs><pattern id="card-fibers" width="14" height="12" patternUnits="userSpaceOnUse"><path d="m2 2 3 2m5 4 2-2M2 10l2-2" fill="none" stroke="#a99d8b" stroke-width=".4" opacity=".3"/></pattern></defs>
@@ -230,11 +245,11 @@ body:has(#memory-sheet[open]){overflow:hidden}
 </g>
 <path d="m137 62-2 16m-5-5 5 6 6-5" fill="none" stroke="#354468" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></button>
-<button class="hotspot flowers-button" id="flowers-button"><span class="dot" aria-hidden="true">❀</span> For you</button>
-<button class="hotspot seat-button" id="seat-button"><span class="dot" aria-hidden="true">♡</span> Your seat</button>
+<button class="hotspot flowers-button" id="flowers-button" aria-label="Open the flower note"></button>
+<button class="hotspot seat-button" id="seat-button" aria-label="Open your reserved seat note"></button>
 <div class="rain-badge" aria-hidden="true">A little Dataland weather. A very good memory. ♡</div>
 </div>
-<div id="mobile-controls" class="mobile-controls" aria-label="Explore the little surprises"></div>
+
 <p class="tap-cue">Five little discoveries. <b id="discovery-count">0 of 5 found</b> · No wrong order.</p>
 <audio id="our-song" preload="none" src="./Iris%20-%20Goo%20Goo%20Dolls%20short.mp3"></audio>
 </section>
@@ -259,9 +274,6 @@ body:has(#memory-sheet[open]){overflow:hidden}
 const $=id=>document.getElementById(id),reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=reduceMotion.matches,raining=false,frame=0,lastFrame=0,rainDrops=[],rainWidth=0,rainHeight=0,radioIndex=0;
 const discoveries=new Set();
-const mobileLayout=matchMedia('(max-width:650px)'),sceneControls=['rain-button','radio-button','glove-button','flowers-button','seat-button'];
-function placeSceneControls(){const holder=mobileLayout.matches?$('mobile-controls'):$('scene');for(const id of sceneControls)holder.append($(id));}
-mobileLayout.addEventListener('change',placeSceneControls);placeSceneControls();
 
 const radioMessages=[
  {label:'01 / THE FIRST CHAPTER',text:'Coffee, bread, and a conversation I’m very glad we had. Café Dolce will always be a little special.'},
