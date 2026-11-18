@@ -84,6 +84,8 @@ body:has(#memory-sheet[open]){overflow:hidden}
 .scene .console-music-toggle{z-index:5}
 .scene .console-volume{z-index:6}
 @media(max-width:650px){.scene .radio-button{width:13%;height:17%}}
+
+.scene .visor-note-button{left:31%;top:13.7%;width:19%;height:13%;z-index:4;min-height:44px}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -227,6 +229,7 @@ body:has(#memory-sheet[open]){overflow:hidden}
 <canvas id="rain-canvas" aria-hidden="true"></canvas>
 <button type="button" id="music-toggle" class="console-music-toggle" aria-label="Play Iris by Goo Goo Dolls" aria-pressed="false" aria-controls="our-song"></button><input id="song-volume" class="console-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Song volume" title="Song volume">
 <span id="song-status" class="music-sr-only" role="status" aria-live="polite"></span>
+<button type="button" class="hotspot visor-note-button" id="visor-note-button" aria-label="Read a thank-you note for your jasmine-scented notes"></button>
 <button class="hotspot rain-button" id="rain-button" aria-pressed="false" aria-label="Toggle rain in the scenic background"></button>
 <button class="hotspot radio-button" id="radio-button" aria-label="Open a little memory from the steering wheel"></button>
 <button class="hotspot glove-button" id="glove-button" aria-expanded="false" aria-controls="glove-card" aria-label="Open or close the glove box"><span id="glove-button-label" hidden>Open me</span></button>
@@ -250,7 +253,7 @@ body:has(#memory-sheet[open]){overflow:hidden}
 <div class="rain-badge" aria-hidden="true">A little Dataland weather. A very good memory. ♡</div>
 </div>
 
-<p class="tap-cue">Five little discoveries. <b id="discovery-count">0 of 5 found</b> · No wrong order.</p>
+<p class="tap-cue">Six little discoveries. <b id="discovery-count">0 of 6 found</b> · No wrong order.</p>
 <audio id="our-song" preload="none" src="./Iris%20-%20Goo%20Goo%20Dolls%20short.mp3"></audio>
 </section>
 <section class="royal-invitation" aria-label="Your Princess Day letter"><p>Not all princesses need a castle.</p><small>Some just need their favorite seat and a little royal treatment.</small><button class="primary" id="letter-button">A little royal treatment for you &nbsp; ♡</button></section>
@@ -283,11 +286,13 @@ const radioMessages=[
  {label:'05 / THE PASSENGER PRINCESS CLAUSE',text:'Your very important responsibilities: get comfortable, enjoy the view, and let me spoil you a little.'}
 ];
 const notes={
+ jasmine:{"label":"YOUR LITTLE NOTES, KEPT CLOSE","title":"Hey Hayley,","body":["Your little notes mean a lot to me. The jasmine scent was such a thoughtful touch, and I love that I get to carry a little reminder of you with me. Thank you for making me feel cared for. It’s little things like this that I love about you. ♡"]},
  glove:{"label":"TUCKED AWAY, JUST FOR YOU","title":"One more little note for you.","body":["Hey Hayley! Remember the note I gave you last time? Here’s another little one to remember that night together before you left for Hawaii. I had such a good time with you, and I’m glad we got to spend that evening together before your trip.","It sounds like you’ve been enjoying Hawaii with good food and good company. Hearing about it makes me happy, and I’m glad you’re getting some time to relax and enjoy yourself. I miss having you beside me, but I’m looking forward to seeing you again and making more little memories together. ♡"]},
  flowers:{label:'SOME FLOWERS FOR THE ROAD',title:'These don’t need watering.',body:['A little paper bouquet for your seat. A familiar kind of surprise, with a few extra pixels this time.','You deserve flowers on ordinary days, too. Not just the ones marked on a calendar. ♡']},
  seat:{label:'THE OFFICIAL SEATING ARRANGEMENT',title:'Reserved for Hayley. Obviously.',body:['Best view. Full passenger princess privileges. A very willing driver.','No booking required. Your company is more than enough.','One tiny condition: you have to put up with me being a little cheesy sometimes. 😉']}
 };
-function discover(key,button){discoveries.add(key);button.classList.add('seen');$('discovery-count').textContent=discoveries.size+' of 5 found';if(discoveries.size===5&&!document.body.dataset.allFound){document.body.dataset.allFound='true';}}
+function discover(key,button){discoveries.add(key);button.classList.add('seen');$('discovery-count').textContent=discoveries.size+' of 6 found';if(discoveries.size===6&&!document.body.dataset.allFound){document.body.dataset.allFound='true';}}
+$('visor-note-button').addEventListener('click',()=>{discover('jasmine',$('visor-note-button'));openNote('jasmine');});
 function openNote(kind){const n=notes[kind];$('note-label').textContent=n.label;$('note-title').textContent=n.title;$('note-body').replaceChildren(...n.body.map(text=>{const p=document.createElement('p');p.textContent=text;return p;}));$('note-dialog').showModal();}
 for(const kind of ['flowers','seat'])$(kind+'-button').addEventListener('click',()=>{discover(kind,$(kind+'-button'));if(kind==='flowers')$('scene').classList.add('flower-open');openNote(kind);});
 $('glove-button').onclick=()=>{const opened=$('glove-button').getAttribute('aria-expanded')!=='true';$('glove-button').setAttribute('aria-expanded',String(opened));$('scene').classList.toggle('glove-open',opened);$('glove-card').hidden=!opened;$('glove-button-label').textContent=opened?'Close glove box':'Open me';if(opened)discover('glove',$('glove-button'));};
