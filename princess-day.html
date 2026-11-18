@@ -209,8 +209,52 @@ body:has(#memory-sheet[open]){overflow:hidden}
 </g>
 <path d="M500 0v60" stroke="#211d2c" stroke-width="18"/><rect x="422" y="53" width="156" height="45" rx="15" fill="#171622" stroke="#8b708a" stroke-opacity=".4"/><rect x="432" y="61" width="136" height="27" rx="8" fill="#4a3c51"/><text x="500" y="79" text-anchor="middle" fill="#d1b8cb" font-family="sans-serif" font-size="10" letter-spacing="2">YOU + ME</text>
 <path d="M0 346Q500 282 1000 346v274H0Z" fill="url(#dash)"/><path class="ambient-line" d="M15 350Q500 302 985 350" fill="none" stroke="#1688ed" stroke-width="2.5" opacity=".95"/><path d="M0 390q500-44 1000 0" fill="none" stroke="#a1869f" stroke-opacity=".14"/>
+<!-- Layered cabin trim, driver footwell and center tunnel. -->
+<defs>
+<linearGradient id="cabin-leather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#44384c"/><stop offset=".5" stop-color="#292332"/><stop offset="1" stop-color="#18151f"/></linearGradient>
+<linearGradient id="tunnel-finish" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#292431"/><stop offset=".45" stop-color="#403447"/><stop offset="1" stop-color="#211c2b"/></linearGradient>
+<pattern id="pedal-ribs" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M1 0v5" stroke="#89808f" stroke-width="1" opacity=".5"/></pattern>
+</defs>
+<!-- Slim dashboard vent and softly lit trim, kept behind the steering wheel. -->
+<path d="M33 372q150-16 318-17m270 1q172 1 342 18" fill="none" stroke="#171420" stroke-width="9"/>
+<path d="M34 369q151-16 317-17m270 1q171 1 341 18" fill="none" stroke="#948194" stroke-width="1" opacity=".35"/>
+<!-- Driver door: padded armrest, satin handle and window switches. -->
+<path d="M0 390 99 420 112 620H0Z" fill="url(#cabin-leather)" stroke="#7a637b" stroke-opacity=".25"/>
+<path d="m0 431 69 21 13 108-21 60H0Z" fill="#211c2a"/>
+<path d="m0 447 58 17 12 21-70-18" fill="#4a3a50" stroke="#a083a0" stroke-opacity=".25"/>
+<path d="m20 428 38 9q10 3 11 12l-34-10" fill="none" stroke="#b3a1b3" stroke-width="3" stroke-linecap="round"/>
+<path d="m13 468 35 10 3 11-35-10Z" fill="#18151f"/>
+<path d="m23 475 8 2m4 1 8 2" stroke="#baa3b8" stroke-width="2" stroke-linecap="round"/>
+<path d="m18 507 35 11 10 59-39-10Z" fill="#16131e" stroke="#69566d" stroke-opacity=".5"/>
+<path d="m7 404 75 25 15 160" fill="none" stroke="#b89bb5" stroke-width=".8" stroke-dasharray="3 4" opacity=".22"/>
+<!-- Footwell and pedals beneath the wheel. -->
+<path d="M110 459q100-20 259 2l21 131H112Z" fill="#16131e"/>
+<path d="M127 490q99-18 228-2l16 94H130Z" fill="#1d1925" stroke="#69596f" stroke-opacity=".25"/>
+<g transform="translate(277 505) rotate(7)"><rect width="34" height="28" rx="4" fill="#3e3747" stroke="#8d7f96" stroke-opacity=".4"/><rect x="3" y="3" width="28" height="22" rx="2" fill="url(#pedal-ribs)"/></g>
+<g transform="translate(330 497) rotate(7)"><rect width="17" height="48" rx="4" fill="#3e3747" stroke="#8d7f96" stroke-opacity=".4"/><rect x="3" y="3" width="11" height="42" rx="2" fill="url(#pedal-ribs)"/></g>
+<!-- Floating-screen support, storage tray, cupholders and armrest. -->
+<path d="m431 433-25 187h177l-32-187Z" fill="url(#tunnel-finish)" stroke="#807087" stroke-opacity=".45"/>
+<path d="m432 442-23 178m141-178 29 178" stroke="#b4a3b6" stroke-width="2" opacity=".45"/>
+<path d="M439 473h99l12 82H426Z" fill="#191520" stroke="#88708c" stroke-opacity=".35"/>
+<path d="M442 481h91m-96 66h104" stroke="#64506d" stroke-width="1" opacity=".5"/>
+<path d="m443 490 2-4h84l1 4" fill="none" stroke="#aa87a5" stroke-opacity=".2"/>
+<g fill="#13101b" stroke="#a18aa5" stroke-opacity=".45" stroke-width="1.5">
+<ellipse cx="451" cy="578" rx="22" ry="17"/><ellipse cx="517" cy="578" rx="22" ry="17"/>
+</g>
+<g fill="none" stroke="#5f4b6b" stroke-width="2"><path d="M434 580q17 13 34 0M500 580q17 13 34 0"/></g>
+<path d="M421 620v-12q2-14 17-15h95q15 1 17 15v12" fill="url(#cabin-leather)" stroke="#9e829e" stroke-opacity=".4"/>
+<path d="M432 620v-11q0-6 8-7h90q8 1 8 7v11" fill="none" stroke="#b79ab4" stroke-width=".8" stroke-dasharray="3 4" opacity=".3"/>
+<!-- Driver seat cushion and stitched bolsters fill the lower left. -->
+<path d="M84 620 104 572q8-23 34-25h180q28 2 36 25l17 48Z" fill="url(#cabin-leather)" stroke="#8f748e" stroke-opacity=".45"/>
+<path d="m108 620 18-42q4-11 18-13h163q15 2 20 13l14 42" fill="none" stroke="#a68aa3" stroke-width="1.2" opacity=".4"/>
+<path d="m117 620 17-40q3-7 12-8h158q9 1 12 8l14 40" fill="none" stroke="#be9fb7" stroke-width=".8" stroke-dasharray="3 4" opacity=".25"/>
+<path d="M166 579h111m-119 14h127" stroke="#86718e" stroke-opacity=".15"/>
 <!-- Steering wheel and console -->
-<g transform="translate(222 409)"><circle r="85" fill="#191720" stroke="#9a8196" stroke-opacity=".5" stroke-width="2"/><circle r="67" fill="#2c2737" stroke="#655068" stroke-width="13"/><path d="M-64-18h128L17 25l-6 47h-22l-6-47Z" fill="#1d1a28"/><circle r="20" fill="#3c2e43"/><path d="M-9-2q9-15 18 0L0 12Z" fill="none" stroke="#caa1bd" stroke-width="1.5"/></g>
+<g transform="translate(222 409)"><circle r="85" fill="#191720" stroke="#9a8196" stroke-opacity=".5" stroke-width="2"/><circle r="67" fill="#2c2737" stroke="#655068" stroke-width="13"/><path d="M-64-18h128L17 25l-6 47h-22l-6-47Z" fill="#1d1a28"/><circle r="20" fill="#3c2e43"/><path d="M-9-2q9-15 18 0L0 12Z" fill="none" stroke="#caa1bd" stroke-width="1.5"/>
+<circle cx="-43" cy="-6" r="5" fill="#726078" stroke="#b39bb4" stroke-width=".7"/><circle cx="43" cy="-6" r="5" fill="#726078" stroke="#b39bb4" stroke-width=".7"/>
+<path d="M-46-6h6m3-7 4 2m70-2-4 2M40-6h6M-10 33l3 26h14l3-26" fill="none" stroke="#bba3b9" stroke-width="1" opacity=".55"/>
+<path d="M-53-44q23-20 43-19m20 0q21 0 43 19" fill="none" stroke="#b79ab4" stroke-width=".8" stroke-dasharray="2 3" opacity=".35"/>
+</g>
 <!-- A gold chain bracelet resting below the center console. -->
 <defs><linearGradient id="bracelet-gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff0b4"/><stop offset=".35" stop-color="#d4ad54"/><stop offset=".65" stop-color="#a77c31"/><stop offset="1" stop-color="#f3d58b"/></linearGradient></defs>
 <g id="gold-bracelet" transform="translate(478 522) rotate(-18)" aria-label="A gold chain bracelet with a small clasp resting below the center console">
