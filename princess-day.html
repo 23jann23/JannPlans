@@ -60,6 +60,15 @@ h1{font-size:clamp(35px,10vw,43px);line-height:1.08}.hero{padding-top:26px}.scen
 body:has(#memory-sheet[open]){overflow:hidden}
 @keyframes sheet-rise{from{transform:translateY(100%)}to{transform:translateY(0)}}
 @media(max-width:650px){.memory-sheet-content{padding:24px 24px max(25px,env(safe-area-inset-bottom))}.memory-sheet h2{font-size:31px}.memory-sheet p{font-size:16px}}
+
+/* Memories open as a centered popup on every screen size. */
+.memory-sheet{inset:0;width:min(570px,calc(100% - 32px));max-width:570px;max-height:82dvh;margin:auto;border:1px solid #e8cbd1;border-radius:22px;box-shadow:0 30px 120px #0008}
+.memory-sheet::backdrop{background:#080713b3;backdrop-filter:blur(5px)}
+.memory-sheet[open]{animation:memory-appear .2s ease-out}
+.memory-sheet-content{padding:43px 32px 28px}
+.memory-sheet h2{font-size:34px}
+@keyframes memory-appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.memory-sheet-content{padding:42px 25px 26px}.memory-sheet h2{font-size:31px}}
 </style></head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -235,7 +244,7 @@ body:has(#memory-sheet[open]){overflow:hidden}
 </div>
 
 <dialog id="memory-sheet" class="memory-sheet" aria-labelledby="memory-title" aria-describedby="memory-text">
-<div class="memory-sheet-content"><div class="sheet-grip" aria-hidden="true"></div>
+<div class="memory-sheet-content">
 <button type="button" class="close" aria-label="Close memory" autofocus>×</button>
 <span class="eyebrow" id="memory-label">A LITTLE MEMORY</span>
 <h2 id="memory-title"></h2><p id="memory-text"></p>
